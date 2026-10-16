@@ -2,11 +2,11 @@
 title: About
 permalink: /about/
 layout: page
-excerpt: xPOPE Projects is where xPop3 documents projects in cybersecurity and tech.
+excerpt: xPOPE Projects is where xPOPE documents projects in cybersecurity and tech.
 comments: false
 ---
 
-Hi, I'm **xPop3**, a cybersecurity enthusiast who learns by building things.
+Hi, I'm **xPOPE**, a cybersecurity enthusiast who learns by building things.
 
 This site is my project log. Each post covers one project: what it is, how I put it together, the problems I ran into, and what I took away from it.
 

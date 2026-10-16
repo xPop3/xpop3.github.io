@@ -45,4 +45,4 @@ The theme is based on [Klisé](https://github.com/piharpi/jekyll-klise) by [piha
 
 ## License
 
-The site code is available under the [MIT License](LICENSE). Project write-ups © xPop3.
+The site code is available under the [MIT License](LICENSE). Project write-ups © xPOPE.

@@ -1,7 +1,7 @@
 # Site settings
 title: xPOPE Projects
 description: >-
-  Projects, builds, and write-ups by xPop3: documenting what I'm working on in cybersecurity and tech.
+  Projects, builds, and write-ups by xPOPE: documenting what I'm working on in cybersecurity and tech.
 lang: en-US
 timezone: America/Los_Angeles
 image: assets/img/ogp.png
@@ -10,7 +10,7 @@ mode: dark
 
 # Profile settings
 author:
-  name: xPop3
+  name: xPOPE
   bio: >-
     Cybersecurity enthusiast building and documenting projects.
     Find me on <a href="https://github.com/xPop3" target="_blank" rel="noopener">@github</a>.
