@@ -50,6 +50,29 @@
     color: $gray;
   }
 
+  .resume-download {
+    margin: 18px 0 0;
+
+    a {
+      display: inline-block;
+      padding: 8px 20px;
+      border: 1px solid $black;
+      border-radius: 999px;
+      font-size: $small-font-size;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: $black;
+      transition: background-color 120ms ease, color 120ms ease;
+
+      &:hover,
+      &:focus {
+        background-color: $black;
+        color: $white;
+      }
+    }
+  }
+
   .resume-section {
     margin-top: $spacing-full;
 
@@ -138,6 +161,16 @@
 body[data-theme="dark"] .resume {
   .resume-head {
     border-color: $dark-light;
+  }
+  .resume-download a {
+    border-color: $dark-smoke;
+    color: $dark-white;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-white;
+      color: $dark-black;
+    }
   }
   .resume-name,
   .resume-section > h2,
