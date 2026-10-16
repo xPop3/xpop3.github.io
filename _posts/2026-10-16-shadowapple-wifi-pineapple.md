@@ -4,6 +4,7 @@ description: >-
   One bare travel router, a pile of contradictory tutorials, and every wall I
   face-planted into building a DIY Hak5 WiFi Pineapple on a GL.iNet Shadow.
 tags: [hardware, wifi, openwrt, security, build-log]
+image: /assets/img/posts/shadowapple/hero.jpg
 ---
 
 ![The finished Shadowapple build in a rugged case]({{ "/assets/img/posts/shadowapple/hero.jpg" | relative_url }})

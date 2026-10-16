@@ -1,0 +1,139 @@
+// Project cards (home page)
+.project-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-full;
+  margin-top: $spacing-half;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid $light;
+  border-radius: 12px;
+  background-color: $white;
+  transition: transform 150ms ease, border-color 150ms ease,
+    box-shadow 150ms ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: $smoke;
+    box-shadow: 0 10px 24px rgba(13, 18, 43, 0.12);
+  }
+}
+
+.project-card-media {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background-color: $light;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+  }
+}
+
+.project-card:hover .project-card-media img {
+  transform: scale(1.03);
+}
+
+.project-card-body {
+  padding: $spacing-half $spacing-full $spacing-full;
+}
+
+.project-card-date {
+  display: inline-block;
+  font-size: $small-font-size;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.project-card-title {
+  margin: 6px 0 0;
+  border: 0;
+  padding: 0;
+  font-size: $base-font-size * 1.25;
+  line-height: 1.3;
+
+  a {
+    color: $black;
+
+    &:hover,
+    &:focus {
+      color: $text-link-blue;
+    }
+  }
+}
+
+.project-card-desc {
+  margin: 10px 0 0;
+  font-size: $medium-font-size;
+  line-height: 1.6;
+  color: $text-base-color;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: $gray;
+    background-color: $light;
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+}
+
+// Dark mode
+body[data-theme="dark"] {
+  .project-card {
+    border-color: $dark-light;
+    background-color: $dark-light;
+
+    &:hover {
+      border-color: $dark-smoke;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  .project-card-media {
+    background-color: $dark-black;
+  }
+
+  .project-card-date {
+    color: $dark-gray;
+  }
+
+  .project-card-title a {
+    color: $dark-white;
+
+    &:hover,
+    &:focus {
+      color: $dark-text-link-blue;
+    }
+  }
+
+  .project-card-desc {
+    color: $dark-text-base-color;
+  }
+
+  .project-card-tags li {
+    color: $dark-text-base-color;
+    background-color: $dark-black;
+  }
+}
