@@ -1,18 +1,18 @@
 # Site settings
 title: xPOPE Projects
 description: >-
-  HackTheBox machine writeups and walkthroughs. Writeups are only published after machines retire.
+  Projects, builds, and write-ups by xPop3: documenting what I'm working on in cybersecurity and tech.
 lang: en-US
 timezone: America/Los_Angeles
 image: assets/img/ogp.png
-repo: https://github.com/xPop3/HTB-Writeups
+repo: https://github.com/xPop3/xpop3.github.io
 mode: dark
 
 # Profile settings
 author:
   name: xPop3
   bio: >-
-    Cybersecurity enthusiast working through HackTheBox machines. 
+    Cybersecurity enthusiast building and documenting projects.
     Find me on <a href="https://github.com/xPop3" target="_blank" rel="noopener">@github</a>.
   username: xPop3
   github: xPop3

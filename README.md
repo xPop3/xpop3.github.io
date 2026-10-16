@@ -2,14 +2,7 @@
 
 My personal project site, live at **[xpop3.github.io](https://xpop3.github.io)**.
 
-It's where I document what I'm working on in cybersecurity, mainly [HackTheBox](https://www.hackthebox.com) machine writeups and walkthroughs.
-
-> **Note:** HTB writeups are published only after a machine retires, in line with HackTheBox's rules on active content.
-
-## What's here
-
-- **HTB writeups**: step-by-step walkthroughs of retired machines, from recon and enumeration to foothold, privilege escalation, and lessons learned.
-- **Projects**: other security and tech work as it comes together.
+It's where I document what I'm building and learning in cybersecurity and tech. Each post covers one project: what it is, how I built it, and what I learned along the way.
 
 ## Built with
 
@@ -30,18 +23,18 @@ bundle exec jekyll serve
 
 Then open `http://localhost:4000`.
 
-## Adding a writeup
+## Adding a project
 
-Create a file in `_posts/` named `YYYY-MM-DD-machine-name.md`:
+Create a file in `_posts/` named `YYYY-MM-DD-project-name.md`:
 
 ```markdown
 ---
-title: "HTB: MachineName"
-description: Short summary of the box
-tags: [htb, linux, easy]
+title: "Project Name"
+description: One-line summary of the project
+tags: [security, tooling]
 ---
 
-Writeup content goes here.
+What the project is, how it works, and what I learned.
 ```
 
 Push to `master`, and the site rebuilds and goes live within a couple of minutes.
@@ -52,4 +45,4 @@ The theme is based on [Klisé](https://github.com/piharpi/jekyll-klise) by [piha
 
 ## License
 
-The site code is available under the [MIT License](LICENSE). Writeup content © xPop3.
+The site code is available under the [MIT License](LICENSE). Project write-ups © xPop3.
