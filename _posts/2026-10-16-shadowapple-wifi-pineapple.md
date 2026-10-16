@@ -8,7 +8,7 @@ image: /assets/img/posts/shadowapple/hero.jpg
 ---
 
 ![The finished Shadowapple build in a rugged case]({{ "/assets/img/posts/shadowapple/hero.jpg" | relative_url }})
-*The finished build: the Shadowapple and its three radios packed into a rugged Apache 1800 case. Credit out to SHUR1K-N (McShuriken): [Shadowapple](https://github.com/SHUR1K-N/WiFi-Shadowapple-Resources)*
+*The finished build: the Shadowapple and its three radios packed into a rugged Apache 1800 case. Credit out to SHUR1K-N (McShuriken): [Shadowapple](https://github.com/SHUR1K-N/WiFi-Shadowapple-Resources){:target="_blank" rel="noopener"})*
 
 One bare travel router, a pile of contradictory tutorials, and every wall I face-planted into on the way.
 
