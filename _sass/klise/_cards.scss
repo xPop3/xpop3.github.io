@@ -88,6 +88,7 @@
   list-style: none;
 
   li {
+    display: inline-block;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.4px;
@@ -96,6 +97,14 @@
     background-color: $light;
     border-radius: 999px;
     padding: 4px 10px;
+
+    // cancel the theme's global "— " list bullet
+    &::before {
+      content: none;
+      display: none;
+      margin: 0;
+      width: auto;
+    }
   }
 }
 
@@ -133,7 +142,7 @@ body[data-theme="dark"] {
   }
 
   .project-card-tags li {
-    color: $dark-text-base-color;
-    background-color: $dark-black;
+    color: $dark-white;
+    background-color: #272a35;
   }
 }
