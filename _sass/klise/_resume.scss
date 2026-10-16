@@ -1,0 +1,160 @@
+// Resume page
+.resume {
+  .resume-head {
+    text-align: center;
+    padding-bottom: $spacing-half;
+    margin-bottom: $spacing-half;
+    border-bottom: 1px solid $light;
+  }
+
+  .resume-name {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: $base-font-size * 2;
+    font-weight: 700;
+    color: $black;
+  }
+
+  .resume-role {
+    margin: 6px 0 0;
+    font-weight: 600;
+    color: $text-base-color;
+  }
+
+  .resume-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 18px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      &::before {
+        content: none;
+        display: none;
+        margin: 0;
+        width: auto;
+      }
+    }
+  }
+
+  .resume-certs {
+    margin: 14px 0 0;
+    font-size: $small-font-size;
+    color: $gray;
+  }
+
+  .resume-section {
+    margin-top: $spacing-full;
+
+    > h2 {
+      margin: 0 0 $spacing-half;
+      padding-bottom: 6px;
+      border-bottom: 2px solid $light;
+      font-size: $base-font-size * 1.1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $black;
+    }
+  }
+
+  .resume-entry {
+    margin-bottom: $spacing-half;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 0;
+      border: 0;
+      padding: 0;
+      font-size: $base-font-size;
+      font-weight: 700;
+      color: $black;
+    }
+
+    ul {
+      margin: 8px 0 0;
+    }
+  }
+
+  .resume-entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 16px;
+  }
+
+  .resume-dates {
+    flex-shrink: 0;
+    font-size: $small-font-size;
+    font-weight: 600;
+    color: $gray;
+    white-space: nowrap;
+  }
+
+  .resume-note {
+    margin: 4px 0 0;
+    font-size: $medium-font-size;
+    color: $text-base-color;
+  }
+
+  .resume-skills {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 10px 20px;
+    margin: 0;
+
+    dt {
+      font-weight: 700;
+      color: $black;
+    }
+
+    dd {
+      margin: 0;
+      color: $text-base-color;
+    }
+
+    @include media-query($on-mobile) {
+      grid-template-columns: 1fr;
+      gap: 2px;
+
+      dd {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+// Dark mode
+body[data-theme="dark"] .resume {
+  .resume-head {
+    border-color: $dark-light;
+  }
+  .resume-name,
+  .resume-section > h2,
+  .resume-entry h3,
+  .resume-skills dt {
+    color: $dark-white;
+  }
+  .resume-section > h2 {
+    border-color: $dark-light;
+  }
+  .resume-role,
+  .resume-note,
+  .resume-skills dd {
+    color: $dark-text-base-color;
+  }
+  .resume-certs,
+  .resume-dates {
+    color: $dark-gray;
+  }
+}
