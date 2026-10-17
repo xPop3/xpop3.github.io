@@ -98,9 +98,6 @@ VPN-routed traffic still gets filtered instead of going out raw. A second Mullva
 account drives a separate container so that project's traffic exits on its own
 identity.
 
-> VPN account numbers are credentials, not configuration, so they stay out of
-> this writeup and off the diagram.
-
 **UniFi Controller** (`192.168.50.202:8443`). Manages the AP, SSIDs, and client
 visibility. Running it as its own container means the controller survives reboots
 of anything else and never depends on a vendor cloud.
