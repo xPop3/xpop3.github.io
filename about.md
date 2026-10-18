@@ -14,7 +14,7 @@ Right now I'm a Systems Administrator at a managed service provider, I lead a st
 
 ## Before any of this
 
-I didn't come up through the usual pipeline. For four-plus years I was a professional hairstylist, and I still cut hair part-time at a salon in Costa Mesa. Nobody tells you that cutting hair and running IT support use the same muscle: someone is stressed, they don't care about the technical details, and your job is half fixing the actual problem and half making them feel like it's handled. Turns out that's most of helpdesk work too.
+I didn't come up through the usual pipeline. For 6+ years I was a professional hairstylist, and I still cut hair part-time at a salon in Costa Mesa. Nobody tells you that cutting hair and running IT support use the same muscle: someone is stressed, they don't care about the technical details, and your job is half fixing the actual problem and half making them feel like it's handled. Turns out that's most of helpdesk work too.
 
 At some point the curiosity about how networks actually worked stopped being a hobby and became the plan. I went back to school and built the skill set from the ground up.
 
@@ -26,7 +26,7 @@ On the side I've been building an AI help-desk agent with a privacy gateway at t
 
 ## Competing and breaking stuff on purpose
 
-I compete when I can. SoCal Cyber Cup, CIRCUS (I captained Forensics and Incident Response), HackCCDC defending live boxes against an actual red team, and a steady diet of Hack The Box and TryHackMe. I write up the machines I crack because if I can't explain how I got in, I don't actually understand it yet.
+I compete when I can. Meridian, SoCal Cyber Cup, CIRCUS (I captained Forensics and Incident Response), WRCCDC defending live boxes against an actual red team, and a steady diet of Hack The Box and TryHackMe. I write up the machines I crack because if I can't explain how I got in, I don't actually understand it yet.
 
 ## SCBBG
 
