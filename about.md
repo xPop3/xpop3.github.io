@@ -30,7 +30,7 @@ I compete when I can. SoCal Cyber Cup, CIRCUS (I captained Forensics and Inciden
 
 ## SCBBG
 
-I lead SCBBG, the student cyber club at Saddleback. The name says the whole mission: we build, and we break. One of our builds is [ShadowApple]({{ "/shadowapple-wifi-pineapple/" | relative_url }}), a DIY Wi-Fi Pineapple in a rugged case that we use for wireless security demos.
+I lead SCBBG, the student cyber club at Saddleback. The name says the whole mission: we build, and we break.
 
 ## The homelab
 
