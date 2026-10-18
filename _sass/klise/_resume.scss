@@ -16,6 +16,12 @@
     color: $black;
   }
 
+  .resume-handle {
+    font-weight: 400;
+    font-size: 0.6em;
+    color: $gray;
+  }
+
   .resume-role {
     margin: 6px 0 0;
     font-weight: 600;
@@ -180,6 +186,9 @@ body[data-theme="dark"] .resume {
   }
   .resume-section > h2 {
     border-color: $dark-light;
+  }
+  .resume-handle {
+    color: $dark-gray;
   }
   .resume-role,
   .resume-note,
