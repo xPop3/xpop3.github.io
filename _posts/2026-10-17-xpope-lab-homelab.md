@@ -175,7 +175,6 @@ A few deep-dives I want to break out into their own posts:
 - The Mullvad-over-WireGuard gateway with the AdGuard DNS routing, as a how-to.
 - A full attack-range walkthrough: deploying a target and running a clean
   engagement end to end on `vmbr2`.
-- The ShadowApple build and a wireless assessment done entirely inside the lab.
 
 If you take one thing from this: start with the segmentation. Every other piece
 gets easier to add once the things you break and the things you use physically
