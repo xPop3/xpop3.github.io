@@ -8,7 +8,7 @@ excerpt: >-
   running a student hacking club on the side.
 ---
 
-I'm Pope, aka Benham Haynes. I build things, break things, and write about how both went. (Want the formal version? There's a [resume]({{ "/resume/" | relative_url }}) for that. This page is just me.)
+I'm Benham Haynes, aka xPOPE. I build things, break things, and write about how both went. (Want the formal version? There's a [resume]({{ "/resume/" | relative_url }}) for that. This page is just me.)
 
 Right now I'm a Systems Administrator at a managed service provider, I lead a student security club, and I'm about to start a B.S. in Cybersecurity at WGU. The long game is a career that lives on both sides of security: offense that finds the gaps, defense that closes them.
 
