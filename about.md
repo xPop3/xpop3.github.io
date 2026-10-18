@@ -4,13 +4,13 @@ permalink: /about/
 layout: page
 comments: false
 excerpt: >-
-  Benham Haynes (xPOPE): hairstylist turned sysadmin, founder of UnChat,
-  and the guy running a student hacking club on the side.
+  Benham Haynes (xPOPE): hairstylist turned sysadmin, and the guy
+  running a student hacking club on the side.
 ---
 
 I'm Pope, aka Benham Haynes. I build things, break things, and write about how both went. (Want the formal version? There's a [resume]({{ "/resume/" | relative_url }}) for that. This page is just me.)
 
-Right now I'm a Systems Administrator at a managed service provider, I'm running my own SaaS product on the side, I lead a student security club, and I'm about to start a B.S. in Cybersecurity at WGU. The long game is a career that lives on both sides of security: offense that finds the gaps, defense that closes them.
+Right now I'm a Systems Administrator at a managed service provider, I lead a student security club, and I'm about to start a B.S. in Cybersecurity at WGU. The long game is a career that lives on both sides of security: offense that finds the gaps, defense that closes them.
 
 ## Before any of this
 
@@ -24,17 +24,13 @@ I handle the real mess of supporting multiple client networks at an MSP: SonicWa
 
 On the side I've been building an AI help-desk agent with a privacy gateway at the center of it, because "just use ChatGPT on client data" is a bad answer. Real identifiers never leave the building; the model only ever sees reversible, scoped pseudonyms; secrets get redacted for good; and if anything looks uncertain, it fails closed instead of guessing. Every request gets logged without ever storing the mapping itself.
 
-## UnChat
-
-I'm the founder and only developer behind [UnChat](https://unchat.app){:target="_blank" rel="noopener"}, an AI text humanizer. Built end to end on Next.js, Supabase, Stripe, and the Anthropic API, shipped from idea to a live product people actually pay for. Running it taught me the part nobody covers in a CS class: pricing, payments, and the difference between a demo and a real thing.
-
 ## Competing and breaking stuff on purpose
 
 I compete when I can. SoCal Cyber Cup, CIRCUS (I captained Forensics and Incident Response), HackCCDC defending live boxes against an actual red team, and a steady diet of Hack The Box and TryHackMe. I write up the machines I crack because if I can't explain how I got in, I don't actually understand it yet.
 
 ## SCBBG
 
-I lead [SCBBG](https://scbbg.org){:target="_blank" rel="noopener"}, the student cyber club at Saddleback. The name says the whole mission: we build, and we break. One of our builds is [ShadowApple]({{ "/shadowapple-wifi-pineapple/" | relative_url }}), a DIY Wi-Fi Pineapple in a rugged case that we use for wireless security demos.
+I lead SCBBG, the student cyber club at Saddleback. The name says the whole mission: we build, and we break. One of our builds is [ShadowApple]({{ "/shadowapple-wifi-pineapple/" | relative_url }}), a DIY Wi-Fi Pineapple in a rugged case that we use for wireless security demos.
 
 ## The homelab
 
