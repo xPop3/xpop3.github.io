@@ -3,8 +3,11 @@ layout: post
 title: "Building a Safe, Multi-System Employee Offboarding Platform"
 date: 2026-11-17
 tags: [automation, security, identity, python, fastapi, msp]
+image: /assets/img/posts/offboarding-automation-platform/hero.webp
 description: "Designing an internal platform that automates employee offboarding across Active Directory, Microsoft 365, Exchange Online, and a password manager, built around atomic job claims, immutable identity snapshots, and fail-closed execution."
 ---
+
+![Operations dashboard for the offboarding automation platform](/assets/img/posts/offboarding-automation-platform/hero.webp)
 
 Offboarding an employee at a typical small business touches five or six disconnected systems: the directory, email, a password manager, a phone system, a handful of shared drives. Every one of those is a place access can quietly survive after someone's last day. I built an internal automation platform to close that gap, working alongside Codex as a pair-programming partner through implementation and a dedicated security review pass. The interesting part of the project was not the integrations themselves. It was making destructive, irreversible automation safe enough to actually run.
 
