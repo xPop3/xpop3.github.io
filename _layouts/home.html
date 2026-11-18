@@ -5,8 +5,19 @@ home: true
 
 <h3 class="posts-item-note" aria-label="Recent Projects">Recent Projects</h3>
 <div class="project-cards">
-  {%- for post in site.posts limit: site.number_of_posts -%}
-  <article class="project-card">
+  {%- assign all_posts = site.posts | sort: 'date' | reverse -%}
+  {%- assign pinned_posts = all_posts | where: 'pinned', true -%}
+  {%- assign other_posts = all_posts | where_exp: 'p', 'p.pinned != true' -%}
+  {%- assign sorted_posts = pinned_posts | concat: other_posts -%}
+  {%- for post in sorted_posts limit: site.number_of_posts -%}
+  <article class="project-card{% if post.pinned %} project-card-pinned{% endif %}">
+    {%- if post.pinned -%}
+    <span class="project-card-pin" title="Pinned">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+        <path d="M14 2a1 1 0 0 1 1 1v6.382l3.447 1.723A2 2 0 0 1 19.5 13H13v7l-1 2-1-2v-7H4.5a2 2 0 0 1-.947-1.895L7 9.382V3a1 1 0 0 1 1-1h6z"/>
+      </svg>
+    </span>
+    {%- endif -%}
     {%- if post.image -%}
     <a class="project-card-media" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
       <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" />
