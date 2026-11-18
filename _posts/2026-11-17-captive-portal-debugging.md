@@ -3,8 +3,11 @@ layout: post
 title: "Debugging a Guest WiFi Captive Portal: Two Layers of Encryption Fighting Each Other"
 date: 2026-11-17
 tags: [networking, wifi, captive-portal, troubleshooting, radius]
+image: /assets/img/posts/captive-portal-debugging/hero.png
 description: "A two-week debugging trail behind a guest WiFi captive portal that looked broken at random: a redundant encryption setting on the AP controller was scrambling the one value the portal needed to match."
 ---
+
+![Guest WiFi captive portal splash page](/assets/img/posts/captive-portal-debugging/hero.png)
 
 I designed and deployed a guest WiFi captive portal for a client, Google and Facebook sign-in, SMS verification, a custom splash page, built on IronWifi as the cloud captive portal and RADIUS backend, sitting in front of Ruckus One cloud-managed access points. It worked in testing. Then it started failing for real guests in a way that took two weeks to actually understand.
 
