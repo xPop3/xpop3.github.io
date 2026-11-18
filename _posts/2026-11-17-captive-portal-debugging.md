@@ -2,38 +2,50 @@
 layout: post
 title: "Debugging a Guest WiFi Captive Portal: Two Layers of Encryption Fighting Each Other"
 date: 2026-11-17
-tags: [networking, wifi, captive-portal, troubleshooting]
-description: "Deploying an SMS-authenticated guest WiFi captive portal on cloud-managed access points, and the debugging process behind a sign-in failure caused by two systems independently encrypting the same client identifier."
+tags: [networking, wifi, captive-portal, troubleshooting, radius]
+description: "A two-week debugging trail behind a guest WiFi captive portal that looked broken at random: a redundant encryption setting on the AP controller was scrambling the one value the portal needed to match."
 ---
 
-I designed and deployed a guest WiFi captive portal for a client, SMS-based sign-in, a custom splash page, the works, built on the IronWifi captive-portal platform sitting in front of Ruckus-managed wireless access points. It worked in testing. Then it didn't work for real guests, intermittently, in a way that made no sense until I found it.
+I designed and deployed a guest WiFi captive portal for a client, Google and Facebook sign-in, SMS verification, a custom splash page, built on IronWifi as the cloud captive portal and RADIUS backend, sitting in front of Ruckus One cloud-managed access points. It worked in testing. Then it started failing for real guests in a way that took two weeks to actually understand.
 
 ## The setup
 
-The architecture is standard for this kind of deployment: wireless access points broadcast an open guest SSID, any client that associates gets redirected to a captive-portal landing page instead of the internet, the guest enters a phone number, receives a code by SMS, and once verified gets released onto the network for a configured session length.
+The flow is standard for this kind of deployment: a guest associates to the open SSID, Ruckus redirects them to the portal instead of the internet, and the guest signs in with Google, Facebook, or a phone number and SMS code. Once verified, IronWifi sends a RADIUS attribute back that drops the device into a verified-guest role on the network, and Ruckus releases the connection.
 
-The two systems involved are the Ruckus AP controller, which manages the access points and enforces the captive-portal redirect at the network layer, and the IronWifi captive-portal platform itself, which owns the splash page, SMS verification, and the actual "let this device online" decision. They talk to each other through a standard mechanism: the controller tells the portal who's trying to connect, using the client's MAC address and IP as the identifier, and the portal tells the controller who's now allowed through.
+Ruckus and IronWifi hand a client identifier back and forth to agree on who's being authorized: Ruckus tells IronWifi which MAC and IP are trying to connect, and IronWifi tells Ruckus which MAC and IP to let through. That handoff turned out to be exactly where things were breaking.
 
-## The wall
+## The symptoms
 
-Some guests would authenticate successfully, get the "you're connected" confirmation on the splash page, and then just... not get online. Refreshing did nothing. It wasn't every device, and it wasn't consistent, which is the worst kind of bug to chase because it rules out the obvious explanations first.
+Three things were happening, and none of them pointed at the same cause:
 
-I started where you'd expect: checking that the SMS codes were actually being delivered and verified correctly on the portal side. They were. Session logs on the portal showed successful authentications for the exact clients that were stuck. So the portal thought it had authorized the device. The problem was downstream of that.
+- **SMS sign-in failed with "you have requested too many SMS codes recently,"** even for a phone number that had never requested a code before. That reads like a rate limit, so the first instinct is to check rate limits. They were fine.
+- **Google and Facebook sign-in would show a success page and then never actually release the device onto the network.** The portal thought the guest was authorized. The access point didn't agree.
+- None of it was consistent. Some devices worked, some didn't, with no obvious pattern by browser, OS, or sign-in method.
 
-Next was the controller side: pulling live client tables and checking whether the authorized MAC addresses were actually being granted access at the AP level. Some were, some weren't, and there was no obvious pattern by device type, OS, or signal strength, which pointed away from a wireless-layer issue and toward something in how the two systems were identifying the same client to each other.
+## Ruling things out
+
+I went through the usual suspects first, because the usual suspects are usually right: the walled garden (the list of domains a guest can reach before authenticating, needed for the SMS and OAuth providers to load at all), the SMS rate limits themselves, a possible IP block, the in-app popup browser the captive portal opens inside of, and the splash page's own JavaScript. All of it checked out. The portal's own logs showed successful authentications for the exact sessions that were stuck, which meant the problem wasn't in the portal's sign-in logic at all. It was in what happened after.
+
+The thing that actually cracked it was adding a diagnostic line to the splash page itself: just printing the MAC and IP that Ruckus was handing to the portal, `mac ${client_mac} · ip ${ip_address}`, directly on the page during testing. The value on screen wasn't a MAC address. It was a scrambled, prefixed string, `ENC...` instead of a normal MAC.
 
 ## What was actually happening
 
-The controller had a setting that encrypted MAC and IP addresses before including them in the authorization exchange with the portal, a privacy feature, reasonable on its own. The portal, independently, was also doing its own encoding of client identifiers for its session tracking.
+Ruckus One has a guest-network option called "Enable the encryption for users' MAC and IP addresses," a privacy feature that encrypts the client identifier before handing it to the portal. IronWifi, independently, already does its own handling of that identifier for session tracking and the RADIUS handoff.
 
-When both of those were active at once, the identifier the portal sent back to authorize a session didn't match what the controller expected to see, because each side had transformed the value differently and neither was aware the other was doing it too. For some clients, by coincidence of how the encodings interacted, the identifiers happened to still line up well enough to pass. For others, they didn't, and the device stayed stuck in limbo: authenticated according to the portal, invisible according to the controller.
+With both active, the identifier Ruckus sent didn't match what IronWifi expected, because each side was transforming the value and neither knew the other was doing it too. That explained the "too many SMS codes" error too: IronWifi was seeing what looked like the same scrambled identifier repeating across requests that should have been from different, brand-new phones, and its rate limiter treated them as one client hammering the endpoint.
 
-That's why it looked intermittent. It wasn't random, it was deterministic per client, just not in a way that was visible from either system's logs in isolation. You had to be looking at both sides of the handshake at once to see the mismatch.
+The test that confirmed it: the exact same phone and browser worked fine when I typed the portal URL in directly, and failed when it arrived through Ruckus's redirect, which is the only path that carries the encrypted identifier. Same client, same page, different outcome, depending entirely on which route handed off the identifier.
 
 ## The fix
 
-The real fix was disabling the redundant encryption layer on the controller side and letting the portal own client-identifier handling on its own, since it already had to do that correctly to issue valid sessions in the first place. Once the controller stopped re-encoding values the portal was already handling, the authorization handshake matched consistently and the stuck-session behavior disappeared across every device type that had been affected.
+Turning off MAC/IP encryption on the Ruckus side fixed sign-in across every method, SMS, Google, and Facebook, in one change. IronWifi was already handling that identifier correctly on its own; Ruckus encrypting it a second time was the entire problem, not a contributing factor.
 
-## What this one taught me
+## Other things worth knowing from this build
 
-The honest lesson here isn't about captive portals specifically. It's that when two systems are supposed to agree on an identifier and only sometimes do, the bug almost never lives entirely inside one of them. You have to look at the handshake, not just each side's internal state, because each side can be completely correct about its own logs and still disagree with the other. That's a debugging instinct that's come in handy well outside of wireless networking.
+A few smaller lessons came out of the same project, each one the kind of thing that costs an afternoon if you hit it cold:
+
+- **Captive-portal popup browsers are their own environment.** Email verification links don't work reliably inside them, because the link opens in the device's full browser instead, which doesn't share a session with the popup. If a sign-in method depends on a link click completing inside the same session, it needs to not be a popup-dependent flow.
+- **Hidden form validation can silently block submission with no visible error** inside a captive-portal popup. A `required` attribute or a `type="email"` input that fails native validation just does nothing, no red text, no shake, nothing, which makes it look like the backend is broken when it's actually the browser refusing to submit.
+- **Field placement matters when a provider's own script reloads the page mid-flow.** IronWifi's "text me a code" step submits a real form and the page comes back fresh. Any fields positioned before that reload point get wiped. Moving name and email down next to the code-entry field, after the reload, was the fix, not a JavaScript patch.
+
+None of these are exotic. They're the ordinary cost of wiring two independent systems together and asking them to agree on identity in real time, and the two-week version of this bug only makes sense once you realize that's what was actually happening: not one broken thing, but two correct things that disagreed.
